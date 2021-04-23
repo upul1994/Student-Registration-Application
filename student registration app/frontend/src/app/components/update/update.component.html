@@ -1,0 +1,52 @@
+<div class="container mt-5" style="margin-bottom: 200px">
+
+  <div class="alert alert-dismissible alert-success" *ngIf="msg">
+    <button type="button" class="close" data-dismiss="alert">&times;</button>
+    <strong>Congratulations!! </strong> Student details updated successfully.
+  </div>
+
+  <form #formUdata="ngForm" (ngSubmit)="updateStudent(formUdata)">
+    <div class="form-group">
+      <label for="exampleInputF">First Name</label>
+      <input type="text" class="form-control" id="exampleInputF"  placeholder="Enter First Name" name="firstName" [ngModel]="studentObject?.firstName" (ngModelChange)="studentObject.firstName=$event" #name1="ngModel" required   >
+
+      <div class="alert alert-danger" *ngIf="!name1.valid">
+        <span *ngIf="name1?.errors?.required">This field is required</span>
+      </div>
+
+    </div>
+    <div class="form-group">
+      <label for="exampleInputL">Last Name</label>
+      <input type="text" class="form-control" id="exampleInputL"  placeholder="Enter Last Name" name="lastName" [ngModel]="studentObject?.lastName" (ngModelChange)="studentObject.lastName=$event" #name2="ngModel" required >
+
+      <div class="alert alert-danger" *ngIf="!name2.valid">
+        <span *ngIf="name2?.errors?.required">This field is required</span>
+      </div>
+
+    </div>
+
+    <div class="form-group">
+      <label for="exampleInputAge">Age</label>
+      <input type="text" class="form-control" id="exampleInputAge"  placeholder="Enter Age" name="age" [ngModel]="studentObject?.age" (ngModelChange)="studentObject.age=$event" #name3="ngModel" required minlength="2" maxlength="2">
+
+      <div class="alert alert-danger" *ngIf="!name3.valid">
+        <span *ngIf="name3?.errors?.required">This field is required</span>
+        <span *ngIf="name3?.errors?.minlength">You must enter atleast 2 numbers</span>
+      </div>
+
+    </div>
+    <div class="form-group">
+      <label for="exampleInputPNumber">Phone Number</label>
+      <input type="text" class="form-control" id="exampleInputPNumber"  placeholder="Enter Phone Number" name="phoneNumber"[ngModel]="studentObject?.phoneNumber" (ngModelChange)="studentObject.phoneNumber=$event" #name4="ngModel" required minlength="10" maxlength="10">
+
+      <div class="alert alert-danger" *ngIf="!name4.valid">
+        <span *ngIf="name4?.errors?.required">This field is required</span>
+        <span *ngIf="name4?.errors?.minlength">You must enter atleast 10 numbers</span>
+      </div>
+    </div>
+
+    <button type="submit"  class="btn btn-primary" [disabled]="!formUdata.valid">Update</button>
+  </form>
+</div>
+
+
